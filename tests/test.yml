@@ -1,0 +1,7 @@
+# Test the mono role---
+- hosts: localhost
+  remote_user: root
+
+  roles:
+    - ansible-role-mono
+    - ansible-role-asp-net
