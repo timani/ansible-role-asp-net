@@ -10,7 +10,7 @@
   command: DNX_BRANCH=dev sh /tmp/dnvminstall.sh && source ~/.dnx/dnvm/dnvm.sh
   
 - name: Delete all temporary DNVM files
-  command: rm -rf /tmp/dnvminstall.sh
+  file: path=/tmp/dnvminstall.sh state=absent
 
 - name: Install DNX for Mono
   command: dnvm upgrade -r mono
