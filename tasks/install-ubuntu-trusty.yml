@@ -1,8 +1,44 @@
 ---
 # tasks file for Ubuntu 14.04 Trusty
-- name: Install Mono runtime, mcs and xsp4
-  apt: pkg={{ item }} state=present state=build-dep
+- name: Download DNVM
+  get_url: url=https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh dest=/tmp/dnvminstall.sh
+
+- name: Install DNVM
+  command: DNX_BRANCH=dev sh /tmp/dnvminstall.sh && source ~/.dnx/dnvm/dnvm.sh
+  
+- name: Delete all temporary DNVM files
+  command: rm -rf /tmp/dnvminstall.sh
+
+- name: Install DNX for Mono
+  command: dnvm upgrade -r mono
+
+- name: Install libuv library for Kestrel
+  apt: pkg={{ item }} state=present
   with_items:
-     - mono-runtime
-     - mono-mcs
-     - mono-xsp4
+     - make
+     - automake
+     - libtool
+
+- name: Download libuv
+  get_url: url=https://github.com/libuv/libuv/archive/v1.8.0.tar.gz dest=/tmp/libuv-1.8.0
+  
+- name: Extract libuv archive
+- unarchive: src=/tmp/libuv-v1.8.0.tar.gz dest=/usr/local/src
+
+- name: Run libuv autogen
+  command: sh /tmp/libuv-1.8.0/autogen.sh
+  
+- name: Run ./configure for libuv
+  command: ./configure
+  
+- name: Run make for libuv
+  command: make
+
+- name: Run make install for libuv
+  command: make install
+  
+- name: Delete all temporary libuv files
+  command: rm -rf /tmp/libuv-1.8.0
+  
+- name: Run ldconfig
+  command: ldconfig
