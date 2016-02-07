@@ -1,4 +1,4 @@
-Role Name
+Ansible ASP.net Role
 =========
 
 A brief description of the role goes here.
@@ -25,7 +25,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: timani.asp-net}
 
 License
 -------
