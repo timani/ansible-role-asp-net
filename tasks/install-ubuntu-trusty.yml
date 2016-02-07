@@ -3,6 +3,9 @@
 - name: Download DNVM
   get_url: url=https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh dest=/tmp/dnvminstall.sh
 
+- name: Debug ls /tmp
+- command: ls /tmp
+
 - name: Install DNVM
   command: DNX_BRANCH=dev sh /tmp/dnvminstall.sh && source ~/.dnx/dnvm/dnvm.sh
   
