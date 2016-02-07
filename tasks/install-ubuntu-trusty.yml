@@ -20,7 +20,7 @@
      - libtool
 
 - name: Download libuv
-  get_url: url=https://github.com/libuv/libuv/archive/v1.8.0.tar.gz dest=/tmp/libuv-1.8.0
+  get_url: url=https://github.com/libuv/libuv/archive/v1.8.0.tar.gz dest=/tmp/libuv-v1.8.0.tar.gz
   
 - name: Extract libuv archive
 - unarchive: src=/tmp/libuv-v1.8.0.tar.gz dest=/usr/local/src
