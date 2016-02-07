@@ -41,7 +41,7 @@
   command: make install
   
 - name: Delete all temporary libuv files
-  command: rm -rf /tmp/libuv-1.8.0
+  file: path=/tmp/libuv-1.8.0 state=absent
   
 - name: Run ldconfig
   command: ldconfig
